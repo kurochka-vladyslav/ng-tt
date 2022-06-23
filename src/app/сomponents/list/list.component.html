@@ -1,0 +1,36 @@
+<h1 class="App__title title">List of products</h1>
+<div class="App__list">
+  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+    <tbody *ngFor="let product of productList" id="variable.ProductId">
+      <tr>
+        <td class="App__list__item is-active">
+          {{product.ProductDescription}}
+          <button (click)="setSelectedProduct(product)" class="button is-info centered">
+            Description
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="card container">
+    <div class="card-content App__list--description" *ngIf="visible && selectedProduct; else elseCase">
+      <h1 class="title App__list--title ">{{selectedProduct.ProductDescription | transformNull}}</h1>
+      <p>ProductId: {{selectedProduct.ProductId | transformNull | isBollean}}</p>
+      <p>ProductCode: {{selectedProduct.ProductCode | transformNull | isBollean}}</p>
+      <p>Price: {{selectedProduct.Price | transformNull | isBollean}}</p>
+      <p>VoDatum: {{selectedProduct.VoDatum | transformNull | isBollean}}</p>
+      <p>IsHeavy: {{selectedProduct.IsHeavy | transformNull | isBollean}}</p>
+      <p>RestrictedLands: {{selectedProduct.RestrictedLands | transformNull | isBollean}}</p>
+      <p>IsFsk: {{selectedProduct.IsFsk | transformNull | isBollean}}</p>
+      <p>IsOrdergruppeC: {{selectedProduct.IsOrdergruppeC | transformNull | isBollean}}</p>
+      <button class="App__list--description-button button is-danger" (click)="closeDesk()">
+        Close
+      </button>
+    </div>
+    <ng-template #elseCase>
+      <h1 class="title App__list--title ">No selected product</h1>
+    </ng-template>
+  </div>
+</div>
